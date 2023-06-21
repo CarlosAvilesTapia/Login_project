@@ -8,7 +8,7 @@
 
     <style name="Theme.LoginProject" parent="Base.Theme.LoginProject">
         <item name="android:background">#FF091E02</item>
-        <item name="android:textColor">#FFCD052E</item>
+        <item name="android:editTextColor">#7700FF</item>
         <item name="android:textSize">20sp</item>
     </style>
 
