@@ -1,41 +1,44 @@
 package com.example.loginproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.loginproject.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+
+    // Generación de clase tipo Binding para utilizar view binding en la Activity.
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        // Creación de la instancia binding para ser usada por la Activity.
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        // Se pasa al setContentView para activarla en pantalla.
+        setContentView(binding.getRoot());
 
         // Llamado al método creado para ingresar datos.
         enterData();
     }
 
+    // Creación de método para llenado de datos.
     private void enterData() {
-        // Creación de instancias generadas en el diseño.
-        EditText textName = findViewById(R.id.textName);
-        EditText textLastName = findViewById(R.id.textLastName);
-        EditText textEmail = findViewById(R.id.textEmail);
-        EditText textPassword = findViewById(R.id.textPassword);
-        Button createAccount = findViewById(R.id.createAccountButton);
 
-        // Creación de funcionalidad para el botón de crear cuenta.
-        createAccount.setOnClickListener(new View.OnClickListener() {
+        // Creación de funcionalidad para el botón de crear cuenta mediante view binding.
+        binding.createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Creación de variables para cada campo.
-                String name = textName.getText().toString().trim();
-                String lastName = textLastName.getText().toString().trim();
-                String email = textEmail.getText().toString();
-                String password = textPassword.getText().toString();
+                // Creación de variables para cada campo con view binding.
+                String name = binding.textName.getText().toString().trim();
+                String lastName = binding.textLastName.getText().toString().trim();
+                String email = binding.textEmail.getText().toString();
+                String password = binding.textPassword.getText().toString();
 
                 // Validación para el nombre.
                 if (name.isEmpty()) {
@@ -60,10 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Ingrese una contraseña por favor.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
             }
         });
-
     }
-
 }
